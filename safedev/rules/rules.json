@@ -1,0 +1,213 @@
+{
+  "version": "1.0.0",
+  "description": "SafeDev detection rules. Add your own entries to extend.",
+  "rules": [
+    {
+      "id": "SD-001",
+      "name": "Suspicious eval() with dangerous content",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "\\beval\\s*\\(\\s*(?:base64|b64decode|decode|compile|__import__|bytes\\.fromhex|chr\\(|exec|socket|subprocess|open\\(|os\\.|sys\\.)",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts"
+      ],
+      "description": "eval() called with suspicious content (base64, imports, shell commands). This pattern is commonly used to execute hidden malicious payloads.",
+      "advice": "Decode or inspect what is being passed to eval(). Legitimate eval() calls (like pandas.eval) don't use these patterns."
+    },
+    {
+      "id": "SD-002",
+      "name": "Dynamic code execution \u2014 exec()",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "\\bexec\\s*\\(",
+      "file_types": [
+        ".py"
+      ],
+      "description": "exec() runs arbitrary Python code at runtime.",
+      "advice": "Check what string is being passed to exec()."
+    },
+    {
+      "id": "SD-003",
+      "name": "Base64 encoded payload",
+      "severity": 4,
+      "type": "regex",
+      "pattern": "base64\\.b64decode|atob\\(|Buffer\\.from\\([^)]+,\\s*['\"]base64['\"]",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts",
+        ".sh"
+      ],
+      "description": "Decoding base64 at runtime is a common technique to hide malicious strings from static scanners.",
+      "advice": "Decode the base64 string manually and inspect what it contains."
+    },
+    {
+      "id": "SD-004",
+      "name": "Dangerous dynamic import \u2014 __import__()",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "__import__\\s*\\(\\s*['\"](?:os|sys|socket|subprocess|pty|telnetlib|ftplib|ctypes|winreg|_winapi|cmd|commands|popen)['\"]",
+      "file_types": [
+        ".py"
+      ],
+      "description": "__import__() used to load a dangerous module (os, socket, subprocess etc). This is a common malware technique to hide what is being imported.",
+      "advice": "Check what the imported module is used for. Importing os/socket/subprocess dynamically is a red flag."
+    },
+    {
+      "id": "SD-005",
+      "name": "Shell command execution",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "os\\.system\\(|subprocess\\.(?:call|run|Popen|check_output)\\(|child_process",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts"
+      ],
+      "description": "Running shell commands can allow arbitrary code execution on the host machine.",
+      "advice": "Verify what command is being run and whether user input can influence it."
+    },
+    {
+      "id": "SD-006",
+      "name": "Network socket \u2014 outbound connection",
+      "severity": 2,
+      "type": "regex",
+      "pattern": "socket\\.connect\\(|requests\\.(?:get|post|put|delete|head)\\(|urllib\\.request|fetch\\(",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts"
+      ],
+      "description": "Packages making outbound network calls could be exfiltrating data.",
+      "advice": "Check what URL/host is being contacted and whether it is documented."
+    },
+    {
+      "id": "SD-007",
+      "name": "Suspicious install script",
+      "severity": 4,
+      "type": "filename",
+      "pattern": "(install\\.sh|postinstall\\.js|preinstall\\.js)",
+      "file_types": [
+        "*"
+      ],
+      "description": "Install scripts run automatically during package installation and are a prime attack vector.",
+      "advice": "Read the script in full before allowing it to run."
+    },
+    {
+      "id": "SD-008",
+      "name": "Environment variable harvesting",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "os\\.environ|process\\.env",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts"
+      ],
+      "description": "Reading environment variables can harvest API keys, tokens, and secrets.",
+      "advice": "Verify why environment variables are needed and what is done with them."
+    },
+    {
+      "id": "SD-009",
+      "name": "Reverse shell pattern",
+      "severity": 5,
+      "type": "regex",
+      "pattern": "(?:nc|netcat|ncat)\\s+-[eElp]|/dev/tcp/|bash\\s+-i",
+      "file_types": [
+        ".py",
+        ".sh",
+        ".js",
+        ".ts",
+        ".rb"
+      ],
+      "description": "Classic reverse shell invocations \u2014 attacker gains remote shell access.",
+      "advice": "Treat this as a confirmed malicious indicator. Do not install."
+    },
+    {
+      "id": "SD-010",
+      "name": "Hardcoded IP address",
+      "severity": 2,
+      "type": "regex",
+      "pattern": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts",
+        ".sh"
+      ],
+      "description": "Hardcoded IPs may point to attacker-controlled infrastructure.",
+      "advice": "Check whether the IP is a known legitimate service."
+    },
+    {
+      "id": "SD-011",
+      "name": "Credential / secret keyword",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "(?i)(?:password|passwd|secret|api_key|apikey|access_token|private_key)\\s*=\\s*['\"][^'\"]{4,}['\"]",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts",
+        ".env",
+        ".cfg",
+        ".ini"
+      ],
+      "description": "Hardcoded credentials in source code are a serious security risk.",
+      "advice": "Never hardcode secrets. Use environment variables or a secrets manager."
+    },
+    {
+      "id": "SD-012",
+      "name": "Hex-encoded payload",
+      "severity": 3,
+      "type": "regex",
+      "pattern": "(?:\\\\x[0-9a-fA-F]{2}){8,}|bytes\\.fromhex\\(",
+      "file_types": [
+        ".py",
+        ".js",
+        ".ts"
+      ],
+      "description": "Long hex-encoded strings are commonly used to hide shellcode or malicious payloads.",
+      "advice": "Decode the hex string and inspect its contents."
+    },
+    {
+      "id": "SD-013",
+      "name": "Compile and execute bytecode",
+      "severity": 4,
+      "type": "regex",
+      "pattern": "compile\\s*\\(.*exec|marshal\\.loads",
+      "file_types": [
+        ".py"
+      ],
+      "description": "Compiling strings to bytecode and executing them evades most static analysis.",
+      "advice": "Highly suspicious. Manual review required."
+    },
+    {
+      "id": "SD-014",
+      "name": "Import of dangerous module",
+      "severity": 2,
+      "type": "regex",
+      "pattern": "import\\s+(?:pty|telnetlib|ftplib)|from\\s+(?:pty|telnetlib)\\s+import",
+      "file_types": [
+        ".py"
+      ],
+      "description": "These modules are rarely needed in normal packages and are often used for shell access.",
+      "advice": "Verify why pty or telnetlib is imported."
+    },
+    {
+      "id": "SD-015",
+      "name": "curl / wget download and execute",
+      "severity": 5,
+      "type": "regex",
+      "pattern": "(?:curl|wget)\\s+['\\\"]?https?://|(?:curl|wget).{0,100}(?:\\|\\s*(?:sh|bash|python|perl|ruby))|(?:curl|wget).{0,100}(?:&&\\s*(?:sh|bash|python))",
+      "file_types": [
+        ".sh",
+        ".bash",
+        ".py"
+      ],
+      "description": "Downloading and piping directly into a shell is a classic malware delivery method.",
+      "advice": "Almost always malicious. Do not install."
+    }
+  ]
+}

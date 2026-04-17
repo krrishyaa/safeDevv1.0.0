@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SafeDev | Secure Supply Chain Sentinel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=Roboto+Mono&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        if (window.tailwind) tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#131316",
+                      "surface-variant": "#353438",
+                      "tertiary-container": "#241800",
+                      "on-secondary-fixed-variant": "#005227",
+                      "error": "#ffb4ab",
+                      "on-secondary-fixed": "#00210c",
+                      "on-error-container": "#ffdad6",
+                      "surface-container": "#1f1f22",
+                      "secondary": "#66dd8b",
+                      "on-primary-container": "#78839c",
+                      "on-secondary": "#003919",
+                      "on-surface-variant": "#c4c6cc",
+                      "surface-container-highest": "#353438",
+                      "on-tertiary-fixed-variant": "#5c4300",
+                      "surface-container-lowest": "#0e0e11",
+                      "secondary-fixed": "#83fba5",
+                      "error-container": "#93000a",
+                      "on-surface": "#e4e1e5",
+                      "on-background": "#e4e1e5",
+                      "primary-container": "#0f1a2e",
+                      "on-tertiary": "#402d00",
+                      "on-tertiary-container": "#a77c00",
+                      "inverse-surface": "#e4e1e5",
+                      "surface-dim": "#131316",
+                      "on-primary-fixed": "#101b30",
+                      "on-primary-fixed-variant": "#3c475d",
+                      "surface-container-high": "#2a2a2d",
+                      "primary-fixed-dim": "#bbc6e2",
+                      "background": "#131316",
+                      "primary-fixed": "#d7e2ff",
+                      "outline": "#8e9196",
+                      "inverse-on-surface": "#303033",
+                      "outline-variant": "#44474c",
+                      "secondary-fixed-dim": "#66dd8b",
+                      "on-secondary-container": "#003115",
+                      "inverse-primary": "#545e76",
+                      "on-error": "#690005",
+                      "tertiary": "#fbbc00",
+                      "tertiary-fixed": "#ffdfa0",
+                      "tertiary-fixed-dim": "#fbbc00",
+                      "secondary-container": "#25a55a",
+                      "on-primary": "#263046",
+                      "surface-container-low": "#1b1b1e",
+                      "primary": "#bbc6e2",
+                      "surface-tint": "#bbc6e2",
+                      "surface-bright": "#39393c",
+                      "on-tertiary-fixed": "#261a00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Space Grotesk"],
+                      "body": ["Inter"],
+                      "label": ["Inter"],
+                      "mono": ["Roboto Mono"]
+              }
+            },
+          }
+        }
+      </script>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230D1B2A'/%3E%3Ctext x='32' y='40' font-size='32' text-anchor='middle' fill='%23bbc6e2' font-family='Arial'%3ES%3C/text%3E%3C/svg%3E" rel="icon"/>
+<style>
+        .glass {
+            background: rgba(15, 26, 46, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .text-glow-secondary {
+            text-shadow: 0 0 15px rgba(102, 221, 139, 0.4);
+        }
+      </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation -->
+<nav class="bg-[#0D1B2A]/80 backdrop-blur-xl sticky top-0 z-50 docked full-width tonal-shift-no-border">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#bbc6e2] font-headline">SafeDev</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#bbc6e2] font-semibold border-b-2 border-[#bbc6e2] pb-1 font-headline tracking-tight transition-colors duration-300" href="#overview">Overview</a>
+<a class="text-slate-400 font-medium font-headline tracking-tight hover:text-white transition-colors duration-300" href="#tech-stack">Tech Stack</a>
+<a class="text-slate-400 font-medium font-headline tracking-tight hover:text-white transition-colors duration-300" href="#how-it-works">How It Works</a>
+</div>
+<a class="bg-primary-fixed-dim text-on-primary-fixed font-headline font-bold py-2 px-6 rounded-lg scale-95 duration-150 hover:scale-100 inline-flex items-center" href="https://github.com/yourusername/safedev/releases/latest/download/safedev.exe" download="SafeDev.exe">
+                Download Now
+            </a>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative min-h-[921px] flex items-center justify-center overflow-hidden px-8">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-primary-container/20 to-surface"></div>
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#44474c 1px, transparent 1px); background-size: 40px 40px;"></div>
+</div>
+<div class="relative z-10 max-w-5xl text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1 mb-8 rounded-full bg-surface-container-high border border-outline-variant/15 text-secondary text-sm font-mono tracking-widest">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                SYSTEM STATUS: SECURED
+            </div>
+<h1 class="font-headline text-7xl md:text-9xl font-bold tracking-tighter text-on-surface mb-6">
+                SafeDev <span class="text-primary opacity-50">v1.0.0</span>
+</h1>
+<p class="font-body text-xl md:text-2xl text-on-primary-container max-w-3xl mx-auto mb-12 leading-relaxed">
+                A powerful supply chain security tool that scans pip and npm packages for malware before they run.
+            </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<a class="group relative px-8 py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-headline font-bold text-xl rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(187,198,226,0.2)] inline-flex" href="https://github.com/yourusername/safedev/releases/latest/download/safedev.exe" download="SafeDev.exe">
+<div class="relative z-10 flex items-center gap-3">
+<span class="material-symbols-outlined">download</span>
+                        Download SafeDev-Installer.exe
+                    </div>
+</a>
+<div class="text-sm font-mono text-outline uppercase tracking-widest">v1.0.0 Stable | Windows x64</div>
+</div>
+</div>
+<!-- Abstract Decorative UI Element -->
+<div class="absolute bottom-0 right-0 p-12 opacity-30 select-none pointer-events-none hidden lg:block">
+<div class="flex flex-col gap-4 font-mono text-xs">
+<div class="flex gap-2"><span class="text-secondary">[OK]</span> <span>HASH CHECK: VALID</span></div>
+<div class="flex gap-2"><span class="text-secondary">[OK]</span> <span>SANDBOX: ACTIVE</span></div>
+<div class="flex gap-2"><span class="text-tertiary">[WARN]</span> <span>SUSPICIOUS AST DETECTED</span></div>
+<div class="flex gap-2"><span class="text-error">[FAIL]</span> <span>EXFILTRATION ATTEMPT BLOCKED</span></div>
+</div>
+</div>
+</header>
+<!-- Overview & Technical Section -->
+<section class="py-32 px-8 bg-surface-container-lowest" id="overview">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div>
+<h2 class="font-headline text-5xl font-bold mb-8 text-on-surface tracking-tight">The Sentinel’s Intelligence</h2>
+<div class="space-y-6 text-on-surface-variant text-lg leading-relaxed">
+<p>
+                        Born as a <span class="text-primary font-semibold">global hackathon level project</span>, SafeDev represents a paradigm shift in how developers interact with third-party ecosystems. Most security tools react after the breach; SafeDev intervenes at the moment of installation.
+                    </p>
+<p>
+                        By combining deep static analysis with behavioral heuristics, we create a fortified perimeter around your development environment. We don't just check for known vulnerabilities; we look for intent.
+                    </p>
+</div>
+<div class="mt-16 grid grid-cols-2 gap-8" id="tech-stack">
+<div class="space-y-2">
+<span class="block font-mono text-xs text-outline uppercase tracking-widest">Core Engine</span>
+<p class="font-headline text-xl text-primary font-semibold">Python 3.10+</p>
+</div>
+<div class="space-y-2">
+<span class="block font-mono text-xs text-outline uppercase tracking-widest">Analysis Layer</span>
+<p class="font-headline text-xl text-primary font-semibold">Regex + AST Analysis</p>
+</div>
+<div class="space-y-2">
+<span class="block font-mono text-xs text-outline uppercase tracking-widest">User Interface</span>
+<p class="font-headline text-xl text-primary font-semibold">Streamlit Dashboard</p>
+</div>
+<div class="space-y-2">
+<span class="block font-mono text-xs text-outline uppercase tracking-widest">Distribution</span>
+<p class="font-headline text-xl text-primary font-semibold">PyInstaller Runtime</p>
+</div>
+</div>
+</div>
+<div class="relative aspect-square rounded-full border border-outline-variant/10 flex items-center justify-center p-12">
+<div class="absolute inset-0 rounded-full border border-primary/5 animate-[spin_20s_linear_infinite]"></div>
+<div class="glass p-12 rounded-3xl border border-outline-variant/15 relative z-10 w-full">
+<img class="w-full h-auto rounded-lg shadow-2xl" data-alt="A professional security dashboard with technical terminal output showing code being scanned and marked as safe with green indicators" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz6q7jLXu_oJBOCgCNQ6zLHm5pvUiXjhqS0SDT6tys7jOh-P6sCjxUJNQGgpNKYySiIoyO1dfIL1UKk4xBSD802alPws6T61Xep70bDEu9TTYqVKczyEQDzOuJDdwx7hwxfLTkiFqHO9LdQ5WVq1J0uofGr59vsrYuJNuIdMZLJCI04lkQ24rkta_ef1nXAumGd6DjHBFi_Q3k05OaX-XjIrYExfrM0_07zSrPgc5Ej6fWW6c6CB4lLwWBthrWOEMb6eCfZnOi7ciH"/>
+<div class="mt-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<div class="font-headline font-bold">Threat Intelligence Active</div>
+<div class="text-sm text-outline">Real-time supply chain monitoring</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-32 px-8">
+<div class="max-w-7xl mx-auto">
+<div class="mb-20 text-center">
+<h2 class="font-headline text-5xl font-bold mb-4">Core Defenses</h2>
+<p class="text-on-surface-variant max-w-2xl mx-auto">Surgical precision in malware detection across Python and JavaScript ecosystems.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Large Card -->
+<div class="md:col-span-2 glass p-10 rounded-3xl border border-outline-variant/15 flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<div class="w-14 h-14 bg-primary-container rounded-xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-3xl">rule</span>
+</div>
+<h3 class="font-headline text-3xl font-bold mb-4">15 Specialized Detection Rules</h3>
+<p class="text-on-surface-variant text-lg max-w-md">Scanning for complex malware combinations, pre-download integrity checks, and obfuscated payload patterns before a single bit is executed.</p>
+</div>
+<div class="absolute top-10 right-[-20px] opacity-10 rotate-12 select-none pointer-events-none">
+<pre class="font-mono text-xs text-primary leading-tight">rule detect_obfuscation {
+    meta:
+        description = "Detects hidden payloads"
+    strings:
+        $s1 = "base64"
+        $s2 = "eval"
+    condition:
+        all of them
+}
+                        </pre>
+</div>
+</div>
+<!-- Secondary Card -->
+<div class="surface-container-high p-10 rounded-3xl border-l-4 border-secondary flex flex-col">
+<div class="w-14 h-14 bg-secondary-container/20 rounded-xl flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-secondary text-3xl">psychology</span>
+</div>
+<h3 class="font-headline text-2xl font-bold mb-4">Behavioral Correlation</h3>
+<p class="text-on-surface-variant">An advanced intelligence layer that analyzes the intent of scripts to prevent false positives while catching zero-day threats.</p>
+</div>
+<!-- Workflow Card -->
+<div class="md:col-span-3 surface-container-low p-10 rounded-3xl border border-outline-variant/15">
+<h3 class="font-headline text-3xl font-bold mb-12 text-center" id="how-it-works">The Full Scan Workflow</h3>
+<div class="grid grid-cols-1 md:grid-cols-6 gap-4 relative">
+<!-- Connecting Line (Desktop) -->
+<div class="hidden md:block absolute top-1/2 left-0 right-0 h-px bg-outline-variant/30 -translate-y-1/2 z-0"></div>
+<!-- Step 1 -->
+<div class="relative z-10 bg-surface-container p-6 rounded-2xl border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary mb-3">list_alt</span>
+<div class="font-mono text-[10px] text-outline mb-1">STEP 01</div>
+<div class="font-bold text-sm">Blocklist Check</div>
+</div>
+<!-- Step 2 -->
+<div class="relative z-10 bg-surface-container p-6 rounded-2xl border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary mb-3">keyboard_alt</span>
+<div class="font-mono text-[10px] text-outline mb-1">STEP 02</div>
+<div class="font-bold text-sm">Typosquat Check</div>
+</div>
+<!-- Step 3 -->
+<div class="relative z-10 bg-surface-container p-6 rounded-2xl border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary mb-3">cloud_download</span>
+<div class="font-mono text-[10px] text-outline mb-1">STEP 03</div>
+<div class="font-bold text-sm">Safe Download</div>
+</div>
+<!-- Step 4 -->
+<div class="relative z-10 bg-surface-container p-6 rounded-2xl border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary mb-3">unarchive</span>
+<div class="font-mono text-[10px] text-outline mb-1">STEP 04</div>
+<div class="font-bold text-sm">Extraction</div>
+</div>
+<!-- Step 5 -->
+<div class="relative z-10 bg-surface-container p-6 rounded-2xl border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-primary mb-3">biotech</span>
+<div class="font-mono text-[10px] text-outline mb-1">STEP 05</div>
+<div class="font-bold text-sm">Deep AST Scan</div>
+</div>
+<!-- Step 6 -->
+<div class="relative z-10 bg-surface-container p-6 rounded-2xl border border-outline-variant/10 text-center">
+<span class="material-symbols-outlined text-secondary mb-3" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="font-mono text-[10px] text-outline mb-1">STEP 06</div>
+<div class="font-bold text-sm">Security Score</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Command Matrix -->
+<section class="py-32 px-8 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1 mb-6 rounded-full bg-surface-container-high border border-outline-variant/15 text-secondary text-sm font-mono tracking-widest">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                CLI SURFACE MAP
+            </div>
+<h2 class="font-headline text-5xl font-bold mb-4">Every SafeDev command, mission-ready</h2>
+<p class="text-on-surface-variant max-w-3xl mx-auto text-lg">Pulled from the README and current CLI implementation, these examples match the SafeDev workflow from first install to repo inspection, dependency triage, and dashboard launch.</p>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-10">
+<div class="glass p-10 rounded-3xl border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">terminal</span>
+<h3 class="font-headline text-3xl font-bold">Install & Upgrade Operations</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev install requests</div>
+<p class="text-on-surface-variant mt-2">Scan then install a pip package only after risk review.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev install lodash --ecosystem npm</div>
+<p class="text-on-surface-variant mt-2">Use the same pre-trust workflow for npm packages.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev upgrade requests</div>
+<p class="text-on-surface-variant mt-2">Upgrade dependencies only after scanning the latest target.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev uninstall flask --yes</div>
+<p class="text-on-surface-variant mt-2">Remove packages cleanly without extra prompts.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev install-deps requirements.txt --yes</div>
+<p class="text-on-surface-variant mt-2">Install only dependency-file entries that stay under your threshold.</p>
+</div>
+</div>
+</div>
+
+<div class="glass p-10 rounded-3xl border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">search_insights</span>
+<h3 class="font-headline text-3xl font-bold">Scan & Analysis Operations</h3>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev clone https://github.com/user/repo</div>
+<p class="text-on-surface-variant mt-2">Scan a repository in isolation before it enters your workspace.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev scan ./my-project</div>
+<p class="text-on-surface-variant mt-2">Inspect a local folder for suspicious rules, files, and patterns.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev scan ./my-project --output json</div>
+<p class="text-on-surface-variant mt-2">Export machine-readable scan data for automation or CI.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev scan-deps requirements.txt --threshold 3</div>
+<p class="text-on-surface-variant mt-2">Review every listed dependency with a stricter blocking policy.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev check --ecosystem npm</div>
+<p class="text-on-surface-variant mt-2">Use SafeDev as a single entry point for dependency health checks.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">safedev audit</div>
+<p class="text-on-surface-variant mt-2">Trigger npm security audit from the SafeDev surface.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6 mb-10">
+<div class="surface-container-low p-10 rounded-3xl border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-tertiary text-3xl">dashboard</span>
+<h3 class="font-headline text-3xl font-bold">Metadata, Runtime, and Dashboard Commands</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-primary text-sm">safedev list</div>
+<p class="text-on-surface-variant mt-2">List installed packages in the active ecosystem.</p>
+</div>
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-primary text-sm">safedev list --outdated</div>
+<p class="text-on-surface-variant mt-2">Surface dependencies that are lagging behind.</p>
+</div>
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-primary text-sm">safedev show requests</div>
+<p class="text-on-surface-variant mt-2">Inspect metadata for an installed package.</p>
+</div>
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-primary text-sm">safedev freeze</div>
+<p class="text-on-surface-variant mt-2">Export your Python environment as a requirements snapshot.</p>
+</div>
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-primary text-sm">safedev version</div>
+<p class="text-on-surface-variant mt-2">Print SafeDev, Python, pip, npm, node, and git versions.</p>
+</div>
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-primary text-sm">safedev run build</div>
+<p class="text-on-surface-variant mt-2">Run npm scripts through one trusted CLI surface.</p>
+</div>
+<div class="bg-surface-container rounded-2xl border border-outline-variant/10 p-5 md:col-span-2">
+<div class="font-mono text-primary text-sm">safedev ui</div>
+<p class="text-on-surface-variant mt-2">Launch the Streamlit dashboard for visual scanning, history, exports, and command discovery.</p>
+</div>
+</div>
+</div>
+
+<div class="glass p-10 rounded-3xl border border-outline-variant/15">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">tune</span>
+<h3 class="font-headline text-3xl font-bold">Core Flags</h3>
+</div>
+<div class="space-y-4 text-on-surface-variant">
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">--ecosystem pip|npm</div>
+<p class="mt-2">Switch between Python and JavaScript package ecosystems.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">--threshold N</div>
+<p class="mt-2">Tighten or relax the blocking policy for scans and dependency review.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">--force</div>
+<p class="mt-2">Bypass confirmation and continue when you explicitly accept the risk.</p>
+</div>
+<div class="bg-surface-container-low rounded-2xl border border-outline-variant/10 p-5">
+<div class="font-mono text-secondary text-sm">--output text|json</div>
+<p class="mt-2">Choose between human-readable reports and automation-friendly output.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Table Section -->
+<section class="py-32 px-8 bg-surface-container-lowest">
+<div class="max-w-5xl mx-auto">
+<h2 class="font-headline text-4xl font-bold mb-16 text-center">The Safety Gap</h2>
+<div class="overflow-hidden rounded-3xl border border-outline-variant/15">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="p-8 font-headline text-lg border-b border-outline-variant/15">Capabilities</th>
+<th class="p-8 font-headline text-lg border-b border-outline-variant/15">Standard Pip</th>
+<th class="p-8 font-headline text-lg border-b border-outline-variant/15 text-secondary">SafeDev Sentinel</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/15">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-8 text-on-surface-variant">Typosquatting Protection</td>
+<td class="p-8 text-outline">None</td>
+<td class="p-8"><span class="material-symbols-outlined text-secondary">check_circle</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-8 text-on-surface-variant">Static Code Analysis</td>
+<td class="p-8 text-outline">None</td>
+<td class="p-8"><span class="material-symbols-outlined text-secondary">check_circle</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-8 text-on-surface-variant">Behavioral Profiling</td>
+<td class="p-8 text-outline">None</td>
+<td class="p-8"><span class="material-symbols-outlined text-secondary">check_circle</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-8 text-on-surface-variant">Isolated Sandbox Download</td>
+<td class="p-8 text-outline">Direct to OS</td>
+<td class="p-8"><span class="material-symbols-outlined text-secondary">check_circle</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Technical Pipeline -->
+<section class="py-32 px-8">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 items-center">
+<div class="flex-1 space-y-8">
+<h2 class="font-headline text-5xl font-bold tracking-tight">The Distribution Wizard</h2>
+<p class="text-on-surface-variant text-lg">
+                    SafeDev isn't just a script; it's a hardened Windows application. We transform Python source into an optimized executable using a multi-stage distribution pipeline.
+                </p>
+<div class="space-y-6">
+<div class="flex gap-6 items-start">
+<div class="w-1 bg-primary h-full self-stretch rounded-full opacity-30"></div>
+<div>
+<h4 class="font-headline text-xl font-bold mb-2">Python Core Compilation</h4>
+<p class="text-on-surface-variant">All dependencies are bundled into a standalone runtime using PyInstaller with strict optimization flags.</p>
+</div>
+</div>
+<div class="flex gap-6 items-start">
+<div class="w-1 bg-primary h-full self-stretch rounded-full opacity-30"></div>
+<div>
+<h4 class="font-headline text-xl font-bold mb-2">Windows Installer Wizard</h4>
+<p class="text-on-surface-variant">A native .exe wizard handles registration, system path configuration, and local security policy updates.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 glass p-4 rounded-[2rem] border border-outline-variant/20">
+<img class="rounded-2xl shadow-xl w-full" data-alt="A futuristic software installation window for a security tool showing progress bar and technical status logs on a dark sleek interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCO9FS7dBZaBAitZqGvPRNFK6zCdtlLBlz8QEzNv_e7wblX_lOQNsvsLyfwXjM8AiSBvCex5KYACMbbx-TT6DtNpgGOL5_otyNEPS-K3da59cZNnKQ8ruYeEAYJoA6Wt5l84rKDOVlMxOTYCHtQo_FzxHWFLv6K5p9mk4eqQO7YMM2LV8mSoicKU4jjWhsklZk44vpdbQ367x0E1SlJ0aqwTlxSd_gu2evsSEjbN1mFPtysR2fIVWBiS5Sp5l8pZ6lV-J9dJnxcl07"/>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-32 px-8 bg-primary-container relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #bbc6e2 0, #bbc6e2 1px, transparent 0, transparent 50%); background-size: 15px 15px;"></div>
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h2 class="font-headline text-6xl font-bold mb-8 text-on-surface">Secure your supply chain today.</h2>
+<p class="text-primary text-xl mb-12">Join the elite developers who don't leave their security to chance.</p>
+<a class="px-12 py-6 bg-secondary text-on-secondary font-headline font-bold text-2xl rounded-lg hover:scale-105 transition-all shadow-[0_0_50px_rgba(102,221,139,0.3)] inline-flex items-center" href="https://github.com/yourusername/safedev/releases/latest/download/safedev.exe" download="SafeDev.exe">
+                Download Now
+            </a>
+<div class="mt-8 font-mono text-outline uppercase tracking-widest text-xs">Verified Build SHA-256: B37D18F2A7B278D08CBCBBEC0AC6DE2D43A5D3CBEC67CB0E0A9D941D264B72D1</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#0D1B2A] tonal-depth-shift">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-16 gap-8 border-t border-[#44474c]/15 max-w-screen-2xl mx-auto">
+<div>
+<div class="text-lg font-bold text-[#bbc6e2] font-headline mb-2">SafeDev Sentinel</div>
+<p class="text-slate-500 font-body text-sm tracking-wide">© 2024 SafeDev Sentinel. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-8">
+<a class="text-slate-500 font-body text-sm tracking-wide hover:text-[#66dd8b] transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-slate-500 font-body text-sm tracking-wide hover:text-[#66dd8b] transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-slate-500 font-body text-sm tracking-wide hover:text-[#66dd8b] transition-all opacity-80 hover:opacity-100" href="#">Security Disclosure</a>
+<a class="text-slate-500 font-body text-sm tracking-wide hover:text-[#66dd8b] transition-all opacity-80 hover:opacity-100" href="#">GitHub</a>
+</div>
+</div>
+</footer>
+</body></html>
