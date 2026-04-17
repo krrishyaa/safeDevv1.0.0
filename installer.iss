@@ -72,23 +72,20 @@ procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 var
   PathValue: string;
   AppPath: string;
-  UpdatedPath: string;
 begin
   if CurUninstallStep = usUninstall then
   begin
     AppPath := ExpandConstant('{app}');
     if RegQueryStringValue(HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', PathValue) then
     begin
-      UpdatedPath := StringChangeEx(';' + PathValue + ';', ';' + AppPath + ';', ';', True);
-      while Pos(';;', UpdatedPath) > 0 do
-        UpdatedPath := StringChangeEx(UpdatedPath, ';;', ';', True);
-
-      if (Length(UpdatedPath) > 0) and (Copy(UpdatedPath, 1, 1) = ';') then
-        Delete(UpdatedPath, 1, 1);
-      if (Length(UpdatedPath) > 0) and (Copy(UpdatedPath, Length(UpdatedPath), 1) = ';') then
-        Delete(UpdatedPath, Length(UpdatedPath), 1);
-
-      RegWriteStringValue(HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', UpdatedPath);
+      if Pos(';' + AppPath + ';', PathValue) > 0 then
+        PathValue := Copy(PathValue, 1, Pos(';' + AppPath + ';', PathValue) - 1) + 
+                   Copy(PathValue, Pos(';' + AppPath + ';', PathValue) + Length(AppPath) + 1, Length(PathValue))
+      else if Pos(AppPath + ';', PathValue) > 0 then
+        PathValue := Copy(PathValue, Pos(AppPath + ';', PathValue) + Length(AppPath) + 1, Length(PathValue))
+      else if Pos(';' + AppPath, PathValue) > 0 then
+        PathValue := Copy(PathValue, 1, Pos(';' + AppPath, PathValue) - 1);
+      RegWriteStringValue(HKLM, 'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', PathValue);
     end;
   end;
 end;
